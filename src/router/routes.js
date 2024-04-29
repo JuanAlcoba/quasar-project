@@ -25,6 +25,18 @@ const routes = [
       { path: "hooks", component: () => import("pages/HooksLesson.vue") },
     ],
   },
+  {
+    path: "/scanner",
+    component: () => import("layouts/BlankLayout.vue"),
+    children: [{ path: "", component: () => import("pages/ScanerPage.vue") }],
+  },
+  {
+    path: "/scanner-alt",
+    component: () => import("layouts/BlankLayout.vue"),
+    children: [
+      { path: "", component: () => import("pages/ScanerAltPage.vue") },
+    ],
+  },
 
   // Always leave this as last one,
   // but you can also remove it

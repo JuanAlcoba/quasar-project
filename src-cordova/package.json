@@ -14,6 +14,8 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^11.0.0",
+    "cordova-ios": "^7.1.0",
+    "cordova-plugin-qrscanner": "^3.0.1",
     "cordova-plugin-splashscreen": "^6.0.1"
   },
   "cordova": {
@@ -22,7 +24,8 @@
     ],
     "plugins": {
       "cordova-plugin-splashscreen": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-qrscanner": {}
     }
   },
   "dependencies": {

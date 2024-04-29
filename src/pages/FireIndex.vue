@@ -57,11 +57,12 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { collection, addDoc, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, query, limit, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from 'src/boot/firebase';
 import { useCollection } from 'vuefire'
 
-const anuncios = useCollection(collection(db, 'anuncios'))
+// const anuncios = useCollection(collection(db, 'anuncios'))
+const anuncios = ref([]);
 
 const nuevoAnuncio = ref({
   titulo: "",
@@ -81,7 +82,13 @@ async function agregarAnuncio() {
 }
 
 async function getAnuncios() {
-  const querySnapshot = await getDocs(collection(db, "anuncios"));
+  const anunciosRef = collection(db, "anuncios");
+  const queryAnuncios = query(anunciosRef, limit(10));
+  const querySnapshot = await getDocs(queryAnuncios);
+  anuncios.value = querySnapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
   querySnapshot.forEach((doc) => {
     console.log(`${doc.id} => ${doc.data()}`);
   });
@@ -92,9 +99,10 @@ async function eliminar(id) {
   await deleteDoc(doc(db, "anuncios", id));
 }
 
+getAnuncios()
 
 onMounted(() => {
-  getAnuncios()
+
   console.log(anuncios);
 })
 

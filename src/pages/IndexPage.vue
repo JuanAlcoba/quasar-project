@@ -1,13 +1,16 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-vertical.svg" style="width: 200px; height: 200px">
+    <q-btn to="/scanner-alt">Alt scanner</q-btn>
+    <q-btn to="/scanner">scannerPage</q-btn>
+
   </q-page>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+
 
 onMounted(() => {
-  console.log('Home');
+  console.log('home');
 })
 </script>
